@@ -40,8 +40,10 @@ jobs:
       # The required step with specific name for cache priming verification
       - name: prime-cache-20e9ca5
         run: |
-          echo "=== Cache Priming Step for 23f3003784@ds.study.iitm.ac.in ==="
+          echo "=== Cache Priming Step ==="
+          echo "Email: 23f3003784@ds.study.iitm.ac.in"
           echo "Cache key: cache-20e9ca5"
+          echo "Cache hit status: ${{ steps.cache-pip.outputs.cache-hit }}"
           if [[ "${{ steps.cache-pip.outputs.cache-hit }}" == "true" ]]; then
             echo "✅ Cache hit! Dependencies were restored from cache."
           else
