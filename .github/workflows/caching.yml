@@ -23,47 +23,47 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Set up uv for Python package management
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v5
-      
-      # Create virtual environment
-      - name: Create virtual environment
-        run: uv venv
-
-      # Cache uv dependencies using the specific cache key
-      - name: Cache uv dependencies
-        uses: actions/cache@v4
-        id: cache-uv # Give the step an id to check its output
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          path: ~/.cache/uv
-          key: cache-20e9ca5
+          python-version: '3.11'
 
-      # Install dependencies from requirements.txt
-      - name: Install dependencies
-        run: uv pip install -r requirements.txt
+      # Cache pip dependencies using the specific cache key
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        id: cache-pip
+        with:
+          path: ~/.cache/pip
+          key: cache-20e9ca5
 
       # The required step with specific name for cache priming verification
       - name: prime-cache-20e9ca5
         run: |
           echo "=== Cache Priming Step for 23f3003784@ds.study.iitm.ac.in ==="
-          if [[ "${{ steps.cache-uv.outputs.cache-hit }}" == "true" ]]; then
+          echo "Cache key: cache-20e9ca5"
+          if [[ "${{ steps.cache-pip.outputs.cache-hit }}" == "true" ]]; then
             echo "✅ Cache hit! Dependencies were restored from cache."
-            echo "Cache key: cache-20e9ca5"
           else
-            echo "❌ Cache miss. Dependencies were installed and cache will be saved."
-            echo "Cache key: cache-20e9ca5"
+            echo "❌ Cache miss. Dependencies will be installed and cache will be saved."
           fi
           echo "Cache priming step completed successfully!"
-          
-      # Additional step to verify the installation worked
+          echo "Step status: SUCCESS"
+
+      # Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Verify installation
       - name: Verify installation
         run: |
           echo "Verifying installed packages..."
-          uv pip list
+          pip list
           echo "Installation verification completed!"
 
-      # Optional: Run a simple test to use the cached dependencies
+      # Test cached dependencies
       - name: Test cached dependencies
         run: |
-          uv run python -c "import pandas; import numpy; import fastapi; print('All dependencies imported successfully!')"
+          python -c "import pandas; import numpy; import fastapi; print('All dependencies imported successfully!')"
