@@ -1,0 +1,56 @@
+# GitHub Action for TDS September Assignment
+name: TDS Assignment Verification
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "verification"
+  verification:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # The required step with email address in the name
+      - name: "Verification step for 23f3004197@ds.study.iitm.ac.in"
+        run: |
+          echo "This step is being executed for email: 23f3004197@ds.study.iitm.ac.in"
+          echo "GitHub Action created successfully for TDS Assignment!"
+          echo "Repository: ${{ github.repository }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+
+      # Additional step to demonstrate workflow functionality
+      - name: Display system information
+        run: |
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Current date: $(date)"
+          echo "Working directory: $(pwd)"
+          ls -la
+
+      # Step to create a simple output file
+      - name: Create verification file
+        run: |
+          echo "GitHub Action executed successfully on $(date)" > verification.txt
+          echo "Email: 23f3004197@ds.study.iitm.ac.in" >> verification.txt
+          echo "Repository: ${{ github.repository }}" >> verification.txt
+          cat verification.txt
+
+      # Optional: Upload the verification file as an artifact
+      - name: Upload verification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-output
+          path: verification.txt
