@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       # The required step with email address in the name
-      - name: "Verification step for 23f3003784@ds.study.iitm.ac.in"
+      - name: 23f3003784@ds.study.iitm.ac.in
         run: |
           echo "This step is being executed for email: 23f3003784@ds.study.iitm.ac.in"
           echo "GitHub Action created successfully for TDS Assignment!"
