@@ -1,0 +1,6 @@
+# Trigger file to ensure GitHub Action runs
+
+This file was created to trigger the GitHub Action workflow.
+
+Created on: October 5, 2025
+Email verification: 23f3004197@ds.study.iitm.ac.in
