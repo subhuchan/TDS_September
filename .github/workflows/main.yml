@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@v4
 
       # The required step with email address in the name
-      - name: "Verification step for 23f3004197@ds.study.iitm.ac.in"
+      - name: "Verification step for 23f3003784@ds.study.iitm.ac.in"
         run: |
-          echo "This step is being executed for email: 23f3004197@ds.study.iitm.ac.in"
+          echo "This step is being executed for email: 23f3003784@ds.study.iitm.ac.in"
           echo "GitHub Action created successfully for TDS Assignment!"
           echo "Repository: ${{ github.repository }}"
           echo "Event: ${{ github.event_name }}"
@@ -44,7 +44,7 @@ jobs:
       - name: Create verification file
         run: |
           echo "GitHub Action executed successfully on $(date)" > verification.txt
-          echo "Email: 23f3004197@ds.study.iitm.ac.in" >> verification.txt
+          echo "Email: 23f3003784@ds.study.iitm.ac.in" >> verification.txt
           echo "Repository: ${{ github.repository }}" >> verification.txt
           cat verification.txt
 

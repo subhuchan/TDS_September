@@ -8,7 +8,7 @@ The repository includes a GitHub Action workflow located at `.github/workflows/m
 
 - Triggers on push to the main branch
 - Can be manually triggered via workflow_dispatch
-- Contains a verification step with the required email address: `23f3004197@ds.study.iitm.ac.in`
+- Contains a verification step with the required email address: `23f3003784@ds.study.iitm.ac.in`
 - Performs basic system checks and creates verification artifacts
 
 ## Workflow Features
@@ -24,4 +24,4 @@ The action will automatically run when code is pushed to the main branch, or it 
 
 ## Assignment Requirements
 
-This GitHub Action fulfills the requirement of having a step named with the email address `23f3004197@ds.study.iitm.ac.in` for the TDS September assignment verification.
+This GitHub Action fulfills the requirement of having a step named with the email address `23f3003784@ds.study.iitm.ac.in` for the TDS September assignment verification.
